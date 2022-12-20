@@ -7,8 +7,11 @@ import argparse
 from clearml import Task, OutputModel
 
 # Replace Pendulum-v1/YourName with your own project name (Folder/YourName, e.g. 2022-Y2B-RoboSuite/Michael)
-task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Manual_Model_log_uri', output_uri=True)#, auto_connect_frameworks={'pytorch': False})
+task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Manual_Model_log_uri2', output_uri=True)#, auto_connect_frameworks={'pytorch': False})
 output_model = OutputModel(task=task, framework="PyTorch")
+output_model.set_upload_destination(uri='http://31.204.128.128:8081')
+
+
 #setting the base docker image
 task.set_base_docker('deanis/robosuite:py3.8-2')
 #setting the task to run remotely on the default queue
@@ -38,7 +41,7 @@ model = PPO('MlpPolicy', env, verbose=1, tensorboard_log=f"runs/{run.id}",
             device='cpu')
 
 # create wandb callback
-wandb_callback = WandbCallback(model_save_freq=10000,
+wandb_callback = WandbCallback(model_save_freq=1000,
                                 model_save_path=f"models/{run.id}",
                                 verbose=2,
                                 )
