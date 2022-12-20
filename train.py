@@ -33,7 +33,8 @@ model = PPO('MlpPolicy', env, verbose=1, tensorboard_log=f"runs/{run.id}",
             learning_rate=args.learning_rate,
             batch_size=args.batch_size,
             n_steps=args.n_steps,
-            n_epochs=args.n_epochs)
+            n_epochs=args.n_epochs,
+            device='cpu')
 
 # create wandb callback
 wandb_callback = WandbCallback(model_save_freq=1000,
@@ -43,7 +44,7 @@ wandb_callback = WandbCallback(model_save_freq=1000,
 
 # variable for how often to save the model
 time_steps = 100000
-for i in range(2):
+for i in range(25):
     # add the reset_num_timesteps=False argument to the learn function to prevent the model from resetting the timestep counter
     # add the tb_log_name argument to the learn function to log the tensorboard data to the correct folder
     model.learn(total_timesteps=time_steps, callback=wandb_callback, progress_bar=True, reset_num_timesteps=False,tb_log_name=f"runs/{run.id}")
