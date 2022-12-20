@@ -7,7 +7,7 @@ import argparse
 from clearml import Task
 
 # Replace Pendulum-v1/YourName with your own project name (Folder/YourName, e.g. 2022-Y2B-RoboSuite/Michael)
-task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Experiment1')
+task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Experiment1', output_uri=True)
 #setting the base docker image
 task.set_base_docker('deanis/robosuite:py3.8-2')
 #setting the task to run remotely on the default queue
@@ -43,7 +43,7 @@ wandb_callback = WandbCallback(model_save_freq=1000,
 
 # variable for how often to save the model
 time_steps = 100000
-for i in range(25):
+for i in range(2):
     # add the reset_num_timesteps=False argument to the learn function to prevent the model from resetting the timestep counter
     # add the tb_log_name argument to the learn function to log the tensorboard data to the correct folder
     model.learn(total_timesteps=time_steps, callback=wandb_callback, progress_bar=True, reset_num_timesteps=False,tb_log_name=f"runs/{run.id}")
