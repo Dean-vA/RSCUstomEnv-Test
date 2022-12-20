@@ -7,7 +7,7 @@ import argparse
 from clearml import Task
 
 # Replace Pendulum-v1/YourName with your own project name (Folder/YourName, e.g. 2022-Y2B-RoboSuite/Michael)
-task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Experiment1')#, output_uri=True, auto_connect_frameworks={'pytorch': False})
+task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Experiment6')#, output_uri=True, auto_connect_frameworks={'pytorch': False})
 #setting the base docker image
 task.set_base_docker('deanis/robosuite:py3.8-2')
 #setting the task to run remotely on the default queue
@@ -16,7 +16,7 @@ task.execute_remotely(queue_name="default")
 parser = argparse.ArgumentParser()
 parser.add_argument("--learning_rate", type=float, default=0.0003)
 parser.add_argument("--batch_size", type=int, default=128)
-parser.add_argument("--n_steps", type=int, default=8196)
+parser.add_argument("--n_steps", type=int, default=8192)
 parser.add_argument("--n_epochs", type=int, default=20)
 
 args = parser.parse_args()
