@@ -7,7 +7,7 @@ import argparse
 from clearml import Task, OutputModel
 
 # Replace Pendulum-v1/YourName with your own project name (Folder/YourName, e.g. 2022-Y2B-RoboSuite/Michael)
-task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Experiment6')#, output_uri=True, auto_connect_frameworks={'pytorch': False})
+task = Task.init(project_name='2022-Y2B-RoboSuite/Dean', task_name='Manual_Model_log')#, output_uri=True, auto_connect_frameworks={'pytorch': False})
 output_model = OutputModel(task=task, framework="PyTorch")
 #setting the base docker image
 task.set_base_docker('deanis/robosuite:py3.8-2')
